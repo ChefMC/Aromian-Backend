@@ -28,31 +28,31 @@ public class ConverterController {
 
 		if (request_number != null) {
 			switch (request_direction) {
-			case "roman2arabic":
-				Pattern p = Pattern.compile("[IVXLCDM]+");
-				Matcher m = p.matcher(request_number);
-				if (m.matches()) {
-					response_data.put("result", romanToInteger(request_number));
-					response.put("success", true);
-				} else {
-					response.put("message", "Number to convert is not a roman");
-				}
+				case "roman2arabic":
+					Pattern p = Pattern.compile("[IVXLCDM]+");
+					Matcher m = p.matcher(request_number);
+					if (m.matches()) {
+						response_data.put("result", romanToInteger(request_number));
+						response.put("success", true);
+					} else {
+						response.put("message", "Number to convert is not a roman");
+					}
 
-				break;
+					break;
 
-			case "arabic2roman":
-				try {
-					int number = Integer.parseInt(request_number);
-					response_data.put("result", integerToRoman(number));
-					response.put("success", true);
-				} catch (NumberFormatException e) {
-					response.put("message", "Number to convert is not an integer arabic");
-				}
+				case "arabic2roman":
+					try {
+						int number = Integer.parseInt(request_number);
+						response_data.put("result", integerToRoman(number));
+						response.put("success", true);
+					} catch (NumberFormatException e) {
+						response.put("message", "Number to convert is not an integer arabic");
+					}
 
-				break;
+					break;
 
-			default:
-				response.put("message", "Direction is not specified");
+				default:
+					response.put("message", "Invalid direction");
 			}
 		} else {
 			response.put("message", "Number to convert is not specified");
